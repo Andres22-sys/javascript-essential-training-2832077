@@ -24,3 +24,9 @@ const backpack = {
     this.strapLength.right = lengthRight;
   },
 };
+
+backpack.toggleLid(true);
+console.log(backpack.lidOpen);
+
+backpack.newStrapLength(10, 10);
+console.log(backpack.strapLength);
