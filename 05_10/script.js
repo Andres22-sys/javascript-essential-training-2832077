@@ -76,6 +76,6 @@ const mainNav = document.createElement("nav");
 mainNav.classList.add("main-nav");
 const navList = document.createElement("ul");
 navList.innerHTML = navContent;
-nav.append(navList);
+mainNav.append(navList);
 
 document.querySelector(".site-header").append(mainNav);
