@@ -60,12 +60,12 @@ const content = `
     </ul>  
 `;
 
-/**
- * addFigure function
- * - Receives dataObj
- * - Creates <figure> <img> <figcaption>
- * - Returns <figure>
- */
+
+//   addFigure function
+// - Receives dataObj
+// - Creates <figure> <img> <figcaption>
+// - Returns <figure>
+ 
 const addFigure = (dataObj) => {
   let newFigure = document.createElement("figure");
   let newImg = document.createElement("img");
@@ -77,13 +77,13 @@ const addFigure = (dataObj) => {
   return newFigure;
 };
 
-/**
- * createArticle function
- * - Receives backpack object
- * - Creates <article>
- * - Calls addFigure()
- * - Returns <article>
- */
+// 
+//  createArticle function
+//  - Receives backpack object
+//  - Creates <article>
+//  - Calls addFigure()
+//  - Returns <article>
+//  
 const createArticle = (frogpack) => {
   let newArticle = document.createElement("article");
   newArticle.innerHTML = content;
