@@ -40,6 +40,46 @@ const lidToggle = function (event, button, newArg) {
     : (status.innerText = "closed");
 };
 
+/**
+ * Strap length functionality
+  */
+  const newStrapLength = (strapArray) => {
+    // Loop through each element on the list
+    strapArray.forEach((listElement) => {
+      // Get what side we are working with
+      let side = listElement.getAttribute("data-side");
+
+      // Create a new form element
+      const lengthForm = document.createElement("form");
+      lengthForm.classList.add(`${side}length`);
+
+      // Populate form with an input and a button
+      lengthForm.innerHTML = `
+        <input type="number" name="${side}Length" placeholder="New ${side} length">
+        <button>Update</button>
+      `;
+
+      // Add event listener to the form
+      lengthForm.addEventListener("submit", (event) => {
+        // Prevent the form from submitting
+        event.preventDefault();
+        
+        // Get the value from the form
+        let newLength = lengthForm.querySelector("input").value;
+        
+        // set the new value
+        listElement.querySelector("span").innerHTML = `${newLength} inches`;
+       
+        // Clear the form
+        lengthForm.querySelector("input").value = "";
+      });
+
+      //append the form to the list element
+      listElement.append(lengthForm);
+    });
+  };
+
+
 const backpackList = backpackObjectArray.map((backpack) => {
   let backpackArticle = document.createElement("article");
   backpackArticle.classList.add("backpack");
@@ -73,6 +113,12 @@ const backpackList = backpackObjectArray.map((backpack) => {
     </ul>
     <button class="lid-toggle">Open lid</button>
   `;
+
+  //Find the two elements with the .backpack__strap class.
+  let strapLengths = backpackArticle.querySelectorAll(".backpack__strap");
+
+  //Call the newStrapLength() function and pass on the strapLengths node list.
+  newStrapLength(strapLengths);
 
   let button = backpackArticle.querySelector(".lid-toggle");
   let newArg = "The argument I want to pass to the callback function!";

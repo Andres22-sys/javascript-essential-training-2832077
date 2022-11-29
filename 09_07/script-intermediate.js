@@ -103,12 +103,27 @@ const backpackList = backpackObjectArray.map((backpack) => {
     lidToggle(event, button, newArg);
   });
 
+  // Add event listener to each of the strap length forms and update strap length value with value submitted from form.
+  strapLengths.forEach((listElement) => {
+    let side = listElement.getAttribute("data-side");
+    let form = listElement.querySelector(`.${side}length`);
+    let input = form.querySelector("input");
+    let button = form.querySelector("button");
+
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+      let newLength = input.value;
+      backpack.strapLength[side] = newLength;
+      listElement.querySelector("span").innerText = `${newLength} inches`;
+    });
+  
   return backpackArticle;
 });
 
 // Append each backpack item to the main
 const main = document.querySelector(".maincontent");
 
-backpackList.forEach((backpack) => {
+  backpackList.forEach((backpack) => {
   main.append(backpack);
+  });
 });
